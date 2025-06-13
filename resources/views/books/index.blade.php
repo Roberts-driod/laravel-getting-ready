@@ -1,3 +1,7 @@
+@if(session('message'))
+        {{ session('message') }}
+@endif
+
 <h1>Books</h1>
 <a href="{{route('books.create')}}">Create a book</a>
 <ul>
