@@ -17,33 +17,41 @@ class BookController extends Controller
     }
 
     public function store(Request $request) {
-        $book = Book::create([
-            'title' => $request['title'],
-            'author' => $request['author'],
-            'released_at' => $request['released_at'],
-        ]);
+        // $book = Book::create([
+        //     'title' => $request['title'],
+        //     'author' => $request['author'],
+        //     'released_at' => $request['released_at'],
+        // ])
 
-        return redirect('/books/' . $book->id);
+         $validated = $request->validate([
+
+        'title' => 'required|max:255',
+        'author' => 'required|max:255',
+        'released_at' => 'required',
+    ]);
+
+        Book::create($validated);
+        return redirect(route('books.index'))->with('Book ir izveidots');
     }
 
-    public function show($id) {
-        $book = Book::find($id);
+    public function show(Book $book) {
+        //$book = Book::find($id);
         return view('books.show', ['singleBook' => $book]);
     }
 
-    public function destroy($id) {
-        $book = Book::find($id);
-        $book->delete($id);
+    public function destroy(Book $book) {
+        //$book = Book::find($id);
+        $book->delete();
           return redirect(route("books.index"));
     }
 
-    public function edit($id) {
-        $book = Book::find($id);
+    public function edit(Book $book) {
+       // $book = Book::find($id);
         return view('books.edit', ['editBook' => $book] );
     }
 
-    public function update(Request $request, $id) {
-        $book = Book::find($id);
+    public function update(Request $request, Book $book) {
+       // $book = Book::find($id);
         $book->update([
             'title' => $request['title'],
             'author' => $request['author'],
