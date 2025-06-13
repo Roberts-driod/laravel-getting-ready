@@ -1,4 +1,4 @@
-
+<x-layout>
 
 <h1>New book</h1>
 
@@ -18,3 +18,4 @@
         @enderror
     <input type="submit" value="Create">
 </form>
+</x-layout>
