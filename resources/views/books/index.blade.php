@@ -1,7 +1,7 @@
-<x-layout>
+<x-app-layout>
 
 
-    <section>
+
         <h1>Books</h1>
         <a href="{{ route('books.create') }}" class="btn btn-primary">Create a book</a>
 
@@ -24,7 +24,7 @@
                 </li>
             @endforeach
         </ul>
-    </section>
+  
 
     <style>
         .alert {
@@ -66,4 +66,4 @@
             display: inline;
         }
     </style>
-</x-layout>
+</x-app-layout>
