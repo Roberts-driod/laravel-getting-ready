@@ -10,10 +10,15 @@
                 <li>
                     <article class="book-item">
                         <h2>{{ $book->title }}</h2>
+
+                          <h2>{{$book->label}}</h2>
+                        <img src="{{ \Storage::url($book->path) }}">
+
                         <div class="actions">
                             <a href="{{ route('books.show', $book) }}" class="btn btn-info">Show</a>
                             <a href="{{ route('books.edit', $book) }}" class="btn btn-warning">Edit</a>
                         </div>
+
 
                         <form action="{{ route('books.destroy', $book) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this book?');">
                             @csrf

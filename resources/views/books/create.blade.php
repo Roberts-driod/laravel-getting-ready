@@ -1,8 +1,8 @@
-<x-layout>
+<x-app-layout>
 
 <h1>New book</h1>
 
-<form action="{{route('books.store')}}" method="post">
+<form action="{{route('books.store')}}" method="post"  enctype="multipart/form-data">
     @csrf
     <input type="text" name="title" placeholder="title goes here" value="{{ old('title') }}" >
         @error('title')
@@ -16,6 +16,19 @@
      @error('released_at')
            {{ $message }}
         @enderror
-    <input type="submit" value="Create">
+
+        <h3>new image</h3>
+        <input type="file" name="image">
+        <input type="text" name="label" placeholder="label">
+
+        <button type="submit"> Create </button>
+
 </form>
-</x-layout>
+
+        
+       
+
+
+ 
+
+</x-app-layout>

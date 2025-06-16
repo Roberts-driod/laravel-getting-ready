@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
+            $table->string('label');
+            $table->string('path');
             $table->date('released_at');
             $table->timestamps();
         });

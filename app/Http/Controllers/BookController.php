@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -23,14 +24,24 @@ class BookController extends Controller
         //     'released_at' => $request['released_at'],
         // ])
 
-         $validated = $request->validate([
+          $request->validate([
 
         'title' => 'required|max:255',
         'author' => 'required|max:255',
         'released_at' => 'required',
+        'image' => ['required','image'],
+        'label' => ['required','string'],
     ]);
 
-        Book::create($validated);
+        $path = $request->file('image')->store('images','public');
+        Book::create([
+            'label' => $request->label,
+            'path' => $path,
+            'title' => $request->title,
+            'author' => $request->author,
+            'released_at' => $request->released_at,
+        ]);
+
         return redirect(route('books.index'))->with('message','Book ir izveidots');
     }
 
